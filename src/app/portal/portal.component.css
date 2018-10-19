@@ -1,0 +1,11 @@
+.navbar-toggle.pull-left {
+    margin-left: 15px;
+  }
+
+.navbar ul li a.active {
+  color: #000 !important;
+}
+
+.navbar-nav li a {
+  cursor: pointer;
+}

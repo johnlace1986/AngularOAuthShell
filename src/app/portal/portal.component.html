@@ -1,0 +1,5 @@
+<p>You are logged in!</p>
+
+<button class="btn" *ngIf="isAuthenticated | async" (click)="logout()">Log out</button>
+    
+<router-outlet></router-outlet>
