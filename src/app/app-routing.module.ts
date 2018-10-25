@@ -7,11 +7,6 @@ import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.compon
 
 const routes: Routes = [
   {
-    path: '',
-    children: [],
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'protected',
     component: ProtectedComponent,
     canActivate: [AuthGuard]
@@ -19,6 +14,10 @@ const routes: Routes = [
   {
     path: 'auth-callback',
     component: AuthCallbackComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'protected'
   }
 ];
 
