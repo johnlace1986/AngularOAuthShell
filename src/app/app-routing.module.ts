@@ -8,7 +8,8 @@ import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.compon
 const routes: Routes = [
   {
     path: '',
-    children: []
+    children: [],
+    canActivate: [AuthGuardService]
   },
   {
     path: 'protected',
