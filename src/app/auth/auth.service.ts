@@ -30,10 +30,9 @@ export class AuthService {
     return this.manager.signinRedirect();
   }
 
-  completeAuthentication(): Promise<void> {
-    return this.manager.signinRedirectCallback().then(user => {
-      this.user = user;
-    });
+  async completeAuthentication(): Promise<void> {
+    const user = await this.manager.signinRedirectCallback();
+    this.user = user;
   }
 
   logout(): Promise<void> {
