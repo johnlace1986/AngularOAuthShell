@@ -1,31 +1,27 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { JwksValidationHandler, OAuthModule, OAuthModuleConfig, OAuthStorage, ValidationHandler } from 'angular-oauth2-oidc';
+import { NgModule } from '@angular/core';
+import { HttpModule } from "@angular/http";
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PortalModule } from './portal/portal.module';
-import { AuthModule } from './auth/auth.module';
+import { ProtectedComponent } from './protected/protected.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProtectedComponent,
+    AuthCallbackComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
-    HttpClientModule,
-    OAuthModule.forRoot(),
-    AuthModule,
-    PortalModule,
-    RouterModule.forRoot([
-      { path: '**', redirectTo: 'portal' },
-    ]),
+    AppRoutingModule
   ],
-  providers: [
-    { provide: ValidationHandler, useClass: JwksValidationHandler },
-    { provide: OAuthStorage, useValue: localStorage }
-  ],
+  providers: [AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

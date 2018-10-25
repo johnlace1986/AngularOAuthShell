@@ -1,7 +1,7 @@
-<div style="text-align:center" class="page-header">
-    <h1>Your Website</h1>
-</div>
+<h3><a routerLink="/">Home</a> | <a routerLink="/protected">Protected</a></h3>
+<h1>
+  {{title}}
+</h1>
+<router-outlet></router-outlet>
 
-<button *ngIf="!hasValidToken" class="btn" (click)='login()'>Login</button>
-
-<router-outlet *ngIf="hasValidToken"></router-outlet>
+<button (click)='logout()'>Logout</button>

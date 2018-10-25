@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +7,13 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'app';
 
-  constructor (private _authService: AuthService) {
-    this._authService.runInitialLoginSequence();
+  constructor(private _servce: AuthService) {
+
   }
 
-  login() {
-    console.log('login');
-    this._authService.login(); 
-  }
-
-  public get hasValidToken() {
-    return this._authService.hasValidToken();
+  logout() {
+    this._servce.blah();
   }
 }
