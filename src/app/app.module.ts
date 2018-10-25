@@ -4,14 +4,14 @@ import { HttpModule } from "@angular/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProtectedComponent } from './protected/protected.component';
+import { PortalComponent } from './portal/portal.component';
 import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProtectedComponent
+    PortalComponent
   ],
   imports: [
     HttpModule,
