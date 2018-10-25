@@ -14,6 +14,6 @@ export class AppComponent {
   }
 
   logout() {
-    this._servce.blah();
+    this._servce.logout();
   }
 }

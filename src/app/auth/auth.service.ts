@@ -36,7 +36,7 @@ export class AuthService {
     });
   }
 
-  blah(): Promise<void> {
+  logout(): Promise<void> {
     return this.manager.signoutRedirect();
   }
 }
