@@ -5,7 +5,7 @@ import { HttpModule } from "@angular/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProtectedComponent } from './protected/protected.component';
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuard } from './auth/auth-guard';
 import { AuthService } from './auth/auth.service';
 import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
 
@@ -21,7 +21,7 @@ import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.compon
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthGuardService, AuthService],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
