@@ -7,7 +7,6 @@ import { PortalComponent } from './portal/portal.component';
 import { AuthModule } from './auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard';
-import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
 
 
 @NgModule({
@@ -21,7 +20,6 @@ import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.compon
     AuthModule,
     RouterModule.forRoot([
       { path: 'portal', component: PortalComponent, canActivate: [AuthGuard] },
-      { path: 'auth-callback', component: AuthCallbackComponent },
       { path: '**', redirectTo: 'portal' }
     ])
   ],
