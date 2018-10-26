@@ -5,21 +5,19 @@ import { RouterModule } from '@angular/router';
 
 import { AuthModule } from './auth/auth.module'
 import { AppComponent } from './app.component';
-import { PortalComponent } from './portal/portal.component';;
-import { AuthGuard } from './auth/auth-guard';
+import { PortalModule } from './portal/portal.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PortalComponent
+    AppComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     AuthModule,
+    PortalModule,
     RouterModule.forRoot([
-      { path: 'portal', component: PortalComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: 'portal' }
     ])
   ],
