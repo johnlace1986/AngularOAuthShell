@@ -1,42 +1,41 @@
 import { Injectable } from '@angular/core';
 
 import { UserManager, UserManagerSettings, User } from 'oidc-client';
-import { promise } from 'protractor';
 
 @Injectable()
 export class AuthService {
-  private manager: UserManager = new UserManager(getClientSettings());
-  private user: User = null;
+  private _manager: UserManager = new UserManager(getClientSettings());
+  private _user: User = null;
 
   constructor() {
-    this.manager.getUser().then(user => {
-      this.user = user;
+    this._manager.getUser().then(user => {
+      this._user = user;
     });
   }
 
   isLoggedIn(): boolean {
-    return this.user != null && !this.user.expired;
+    return this._user != null && !this._user.expired;
   }
 
   getClaims(): any {
-    return this.user.profile;
+    return this._user.profile;
   }
 
   getAuthorizationHeaderValue(): string {
-    return `${this.user.token_type} ${this.user.access_token}`;
+    return `${this._user.token_type} ${this._user.access_token}`;
   }
 
   startAuthentication(): Promise<void> {
-    return this.manager.signinRedirect();
+    return this._manager.signinRedirect();
   }
 
   async completeAuthentication(): Promise<void> {
-    const user = await this.manager.signinRedirectCallback();
-    this.user = user;
+    const user = await this._manager.signinRedirectCallback();
+    this._user = user;
   }
 
   logout(): Promise<void> {
-    return this.manager.signoutRedirect();
+    return this._manager.signoutRedirect();
   }
 }
 

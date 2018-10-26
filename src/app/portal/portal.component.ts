@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PortalComponent implements OnInit {
 
-  constructor(private _servce: AuthService) {
+  constructor(private _authService: AuthService) {
 
   }
 
@@ -17,7 +17,6 @@ export class PortalComponent implements OnInit {
   }
 
   logout() {
-    this._servce.logout();
+    this._authService.logout();
   }
-
 }
