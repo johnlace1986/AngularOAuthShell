@@ -13,8 +13,14 @@ export class AuthService {
     });
   }
 
-  isLoggedIn(): boolean {
-    return this._user != null && !this._user.expired;
+  isLoggedIn(): Promise<boolean> {
+    return this._manager.getUser()
+      .then(user => {
+        this._user = user;
+      })
+      .then(() => {
+        return this._user != null && !this._user.expired;
+      });
   }
 
   getClaims(): any {
