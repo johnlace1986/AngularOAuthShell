@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { UserManager, UserManagerSettings, User } from 'oidc-client';
+import { UserManager, User, UserManagerSettings } from 'oidc-client';
 
 @Injectable()
 export class AuthService {
@@ -8,26 +8,27 @@ export class AuthService {
   private _user: User = null;
 
   constructor() {
-    this._manager.getUser().then(user => {
+  }
+
+  private async loadUser(): Promise<void> {
+    if (this._user === null) {
+      const user = await this._manager.getUser();
       this._user = user;
-    });
+    }
   }
 
-  isLoggedIn(): Promise<boolean> {
-    return this._manager.getUser()
-      .then(user => {
-        this._user = user;
-      })
-      .then(() => {
-        return this._user != null && !this._user.expired;
-      });
+  async isLoggedIn(): Promise<boolean> {
+    await this.loadUser();
+    return this._user != null && !this._user.expired;    
   }
 
-  getClaims(): any {
+  async getClaims(): Promise<any> {
+    await this.loadUser();
     return this._user.profile;
   }
 
-  getAuthorizationHeaderValue(): string {
+  async getAuthorizationHeaderValue(): Promise<string> {
+    await this.loadUser();
     return `${this._user.token_type} ${this._user.access_token}`;
   }
 
@@ -44,6 +45,7 @@ export class AuthService {
     return this._manager.signoutRedirect();
   }
 }
+
 
 export function getClientSettings(): UserManagerSettings {
   return {

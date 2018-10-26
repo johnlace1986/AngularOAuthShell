@@ -9,8 +9,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PortalComponent implements OnInit {
 
-  constructor(private _authService: AuthService) {
+  claims: string;
 
+  constructor(private _authService: AuthService) {
+    this._authService.getClaims()
+      .then(claims => {
+        this.claims = JSON.stringify(claims);
+      });
   }
 
   ngOnInit() {
